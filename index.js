@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes'); 
 const taskRoutes = require('./routes/taskRoutes');
+const superAdminRoutes = require('./routes/adminRoutes')
 
 dotenv.config(); 
 
@@ -21,6 +22,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use('/api', authRoutes);
 // Use auth routes
 app.use('/api/tasks', taskRoutes);
+
+//use for admin create
+app.use('/api/user',superAdminRoutes)
+
 
 
 // Start the server
